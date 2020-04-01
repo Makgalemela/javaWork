@@ -1,7 +1,7 @@
-package com.schroodinger.schroodinger.services;
+package com.schroodinger.matomeEngine.services;
 
-import com.schroodinger.schroodinger.models.user;
-import com.schroodinger.schroodinger.repositories.userRepository;
+import com.schroodinger.matomeEngine.models.user;
+import com.schroodinger.matomeEngine.repositories.userRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

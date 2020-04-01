@@ -1,10 +1,10 @@
-package com.schroodinger.schroodinger;
+package com.schroodinger.matomeEngine;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SchroodingerApplicationTests {
+class MatomeEngineApplicationTests {
 
 	@Test
 	void contextLoads() {

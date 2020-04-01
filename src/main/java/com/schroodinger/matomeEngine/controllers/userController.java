@@ -1,6 +1,7 @@
-package com.schroodinger.schroodinger.controllers;
-import com.schroodinger.schroodinger.models.user;
-import com.schroodinger.schroodinger.services.userService;
+package com.schroodinger.matomeEngine.controllers;
+
+import com.schroodinger.matomeEngine.models.user;
+import com.schroodinger.matomeEngine.services.userService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

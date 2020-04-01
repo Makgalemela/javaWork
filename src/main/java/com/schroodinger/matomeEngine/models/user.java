@@ -1,5 +1,4 @@
-package com.schroodinger.schroodinger.models;
-
+package com.schroodinger.matomeEngine.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
