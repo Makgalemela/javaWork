@@ -9,20 +9,21 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
-import java.io.Serializable;
-import java.util.Date;
 
 @Entity
-@EntityListeners(AuditingEntityListener.class )
-@JsonIgnoreProperties(value = {"createdAt", "updateAt"}, allowGetters = true)
-
-public class user implements Serializable {
+@Table(name = "user")
+public class User extends auditModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private  Long id;
 
+  public User(@NotBlank String first_name, List<userAddress> _userAddresses) {
+    this.first_name = first_name;
+    this._userAddresses = _userAddresses;
+  }
 
   @NotBlank
   private String username;
@@ -38,29 +39,38 @@ public class user implements Serializable {
   @NotBlank
   private String email_add;
 
-  @Column(name = "created_on",nullable = false , updatable = false)
-  @Temporal(TemporalType.TIMESTAMP)
-  @CreatedDate
-  private Date createAt;
-
-
-  @Column(name="updated_on",nullable = false)
-  @Temporal(TemporalType.TIMESTAMP)
-  @LastModifiedDate
-  private  Date updatedAt;
-
-
-  public user() {
+  public void setId(Long id) {
+    this.id = id;
   }
 
-  public user(long id , String username , String last_name ,  String first_name
-      , String email_add , Date createdAt , Date updatedAt){
-    this.id = id;
+
+//  public void set_userAddresses(userAddress _userAddresses) {
+//    this._userAddresses = _userAddresses;
+//  }
+
+  @OneToMany(fetch = FetchType.LAZY,
+          cascade =  CascadeType.ALL)
+@JoinTable(name = "userRes", joinColumns = { @JoinColumn(name = "user_id") },
+        inverseJoinColumns = { @JoinColumn(name = "userProfile_id") })
+  private List<userAddress> _userAddresses;
+
+  public User() {
+  }
+
+  public List<userAddress> get_userAddresses() {
+    return _userAddresses;
+  }
+
+  public void set_userAddresses(List<userAddress> _userAddresses) {
+    this._userAddresses = _userAddresses;
+  }
+
+  public User(long id , String username , String last_name , String first_name, String email_add ){
+
     this.username = username;
     this.last_name = last_name;
     this.email_add = email_add;
-    this.createAt = createdAt;
-    this.updatedAt = updatedAt;
+
   }
 
   public long getId() {
@@ -102,21 +112,6 @@ public class user implements Serializable {
     this.email_add = email_add;
   }
 
-  public Date getCreateAt() {
-    return createAt;
-  }
-
-  public void setCreateAt(Date createAt) {
-    this.createAt = createAt;
-  }
-
-  public Date getUpdatedAt() {
-    return updatedAt;
-  }
-
-  public void setUpdatedAt(Date updatedAt) {
-    this.updatedAt = updatedAt;
-  }
 
 
 

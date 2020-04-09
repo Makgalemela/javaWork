@@ -1,6 +1,6 @@
 package com.schroodinger.matomeEngine.services;
 
-import com.schroodinger.matomeEngine.models.user;
+import com.schroodinger.matomeEngine.models.User;
 import com.schroodinger.matomeEngine.repositories.userRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,18 +13,18 @@ import java.util.Optional;
 public class userService {
 
   @Autowired
-  userRepository userRepo;
+  private userRepository userRepo;
 
-  public List<user> getAllUsers(){
+  public List<User> getAllUsers(){
      return  userRepo.findAll();
   }
 
-  public  user createUser(user _user){
-    return userRepo.save(_user);
+  public  User createUser(User user){
+    return userRepo.save(user);
   }
 
-  public Optional<user> getUserById(Long id){
-    return userRepo.findById(id);
+  public Optional<User> getUserById(Long userId){
+    return userRepo.findById(userId);
   }
 
 }
