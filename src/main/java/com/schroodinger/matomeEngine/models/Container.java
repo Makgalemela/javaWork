@@ -19,11 +19,26 @@ public class Container  extends auditModel{
     private   Long id;
 
 
+    public Container(@NotBlank String containerName, Container parentContainer, Set<Container> subContainer, Makgalemela makgalemela) {
+        this.containerName = containerName;
+        this.parentContainer = parentContainer;
+        this.subContainer = subContainer;
+        this.makgalemela = makgalemela;
+    }
+
     @NotBlank
     private String containerName;
 
 //    @NotBlank
 //    private Long parentContainerId;
+
+    public Makgalemela getMakgalemela() {
+        return makgalemela;
+    }
+
+    public void setMakgalemela(Makgalemela makgalemela) {
+        this.makgalemela = makgalemela;
+    }
 
     public Container() {
     }
@@ -84,9 +99,16 @@ public class Container  extends auditModel{
     private Container parentContainer;
 
 //
-    @OneToMany(mappedBy="parentContainer")
+@OneToMany(mappedBy="parentContainer")
     private Set<Container> subContainer = new HashSet<Container>();
 
 
+    //  @JoinColumn(name = "user_id", nullable = false)
+//     @JoinTable(name = "userRes", joinColumns = { @JoinColumn(name = "user_id") },
+//            inverseJoinColumns = { @JoinColumn(name = "userAddress_id") })
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private  Makgalemela makgalemela;
 
 }

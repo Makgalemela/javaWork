@@ -14,7 +14,12 @@ public class containerService {
     @Autowired
     private containerRepository  containerRepo;
 
-    public List<Container> getAllContainers(){
+    public List<Object[]> getAllContainers(){
         return  containerRepo.findContainerByParentContainerIsNull();
+//        return  containerRepo.getAllByContainerName();
+    }
+
+    public Container saveContainer(Container container){
+        return  containerRepo.save(container);
     }
 }

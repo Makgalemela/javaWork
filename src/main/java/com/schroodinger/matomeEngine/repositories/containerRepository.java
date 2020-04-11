@@ -11,8 +11,19 @@ import java.util.List;
 
 @Repository
 public interface containerRepository  extends JpaRepository<Container, Long> {
-    List<Container> findByParentContainerIsNull();
+    @Query("select s.containerName , s.subContainer from Container s")
+    List<Object[]> findByParentContainerIsNull();
 //    @Query("SELECT containerName FROM Container")
-    List<Container> findContainerByParentContainerIsNull();
-    List<Container> findContainerByParentContainerIsNullAndContainerNameAndCreateAt();
+
+List<Object[]> findContainerByParentContainerIsNull();
 }
+//interface ContainerSummary {
+//
+//    String getContainerName();
+////    String getLastname();
+////    AddressSummary getAddress();
+//
+//    interface SubContainerSummary {
+//        String getContainerName();
+//    }
+//}
