@@ -1,13 +1,14 @@
 package com.schroodinger.matomeEngine.repositories;
 
 
-import com.schroodinger.matomeEngine.models.Makgalemela;
 import com.schroodinger.matomeEngine.models.SiteConfigurations;
-import com.schroodinger.matomeEngine.models.TreeView;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
-public interface TreeViewRepository extends JpaRepository<TreeView, Long> {
-//    SiteConfigurations findBySiteId(Long siteId);
+public interface SiteConfigurationsRepository extends JpaRepository<SiteConfigurations , Long> {
+
+   // SiteConfigurations findBySiteId(Long SiteId);
 }

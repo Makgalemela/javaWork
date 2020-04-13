@@ -1,5 +1,6 @@
 package com.schroodinger.matomeEngine.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -25,10 +26,12 @@ public abstract class auditModel implements Serializable {
     @Column(name="updated_on",nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
+
     private  Date updatedAt;
 
+//    @JsonProperty(access = Access.WRITE_ONLY)
 
-
+    @JsonIgnore
     public Date getCreateAt() {
         return createAt;
     }
@@ -37,6 +40,7 @@ public abstract class auditModel implements Serializable {
         this.createAt = createAt;
     }
 
+    @JsonIgnore
     public Date getUpdatedAt() {
         return updatedAt;
     }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -36,7 +37,15 @@ public class containerController {
         List<Object[]> containers = service.getAllContainers();
         return  new ResponseEntity(containers , HttpStatus.OK);
     }
-
+    @RequestMapping(method = RequestMethod.POST , value = "/saveContainer")
+    public ResponseEntity saveUser(@RequestBody Container container){
+        Container newContainer = service.saveContainer(container);
+        TreeView tree = new TreeView();
+        tree.setText(newContainer.getContainerName());
+        tree.setType("container");
+        TreeView newEntry = treeViewService.saveTree(tree);
+        return new ResponseEntity(newContainer , (MultiValueMap<String, String>) newEntry,HttpStatus.OK);
+    }
 
 
     @RequestMapping(method = RequestMethod.POST , value = "/saveContainer/{meId}")

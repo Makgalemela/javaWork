@@ -19,6 +19,22 @@ public class Container  extends auditModel{
     private   Long id;
 
 
+    public Site getSite() {
+        return site;
+    }
+
+    public Container(@NotBlank String containerName, Container parentContainer, Set<Container> subContainer, Makgalemela makgalemela, Site site) {
+        this.containerName = containerName;
+        this.parentContainer = parentContainer;
+        this.subContainer = subContainer;
+        this.makgalemela = makgalemela;
+        this.site = site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
+    }
+
     public Container(@NotBlank String containerName, Container parentContainer, Set<Container> subContainer, Makgalemela makgalemela) {
         this.containerName = containerName;
         this.parentContainer = parentContainer;
@@ -110,5 +126,11 @@ public class Container  extends auditModel{
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private  Makgalemela makgalemela;
+
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private  Site site;
 
 }
